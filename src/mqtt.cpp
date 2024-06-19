@@ -4,13 +4,13 @@ void pushMessage()
 {
     StaticJsonDocument<512> doc;
     
-      JsonArray data = doc["location"].to<JsonArray>();
-  data.add(latitude);
-  data.add(longitude);
-    doc["speed"] = speed;
-    doc["link"] = "http://maps.google.com/?q=" + serialized(String(latitude,10)) + "," + serialized(String(longitude,10));
- 
-    String output;
+//       JsonArray data = doc["location"].to<JsonArray>();
+//   data.add(latitude);
+//   data.add(longitude);
+//     doc["speed"] = speed;
+    // doc["link"] = "http://maps.google.com/?q=" + serialized(String(latitude,10)) + "," + serialized(String(longitude,10));
+  String output = "field1=" + serialized(String(latitude,10)) + "&field2=" + serialized(String(longitude,10)) + "&field3=" + String(speed) + "&status=MQTTPUBLISH";  
+    // output;
     serializeJsonPretty(doc, output);
 
     publishMessage((publishTopic), output, true);
@@ -48,7 +48,8 @@ void reconnect()
     {
         Serial.print("Attempting MQTT connection...");
         // client.connect("cliend ID", "username","password") Replace with your Thingspeak MQTT Device Credentials
-        if (client.connect(meter_id.c_str(), MQTT_USERNAME, MQTT_PASSWORD, (WILL_TOPIC).c_str(), WILL_QOS, WILL_RETAIN, offLineMsg().c_str(), CLEAR_SESSION))
+        // if (client.connect(meter_id.c_str(), MQTT_USERNAME, MQTT_PASSWORD, (WILL_TOPIC).c_str(), WILL_QOS, WILL_RETAIN, offLineMsg().c_str(), CLEAR_SESSION))
+         if (client.connect(MQTT_CLIENT_ID,MQTT_USERNAME, MQTT_PASSWORD))
         {
             Serial.println("connected");
           
