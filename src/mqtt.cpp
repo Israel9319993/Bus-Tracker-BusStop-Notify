@@ -51,12 +51,9 @@ void reconnect()
         if (client.connect(meter_id.c_str(), MQTT_USERNAME, MQTT_PASSWORD, (WILL_TOPIC).c_str(), WILL_QOS, WILL_RETAIN, offLineMsg().c_str(), CLEAR_SESSION))
         {
             Serial.println("connected");
-            // client.subscribe((wallet + meter_id).c_str(), 1);      // subscribe the topics here
-            // client.subscribe((autobilling + meter_id).c_str(), 1); // subscribe the topics here
-            // client.subscribe((Threshold + meter_id).c_str(), 1);   // subscribe the topics here
-            // client.subscribe((control + meter_id).c_str()), 1;     // subscribe the topics here
+          
             pushMessage();
-            // client.subscribe(command2_topic);
+
         }
         else
         {

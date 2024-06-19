@@ -51,13 +51,3 @@ void WifiTask(void *pvParameters)
 }
 
 
-// void HomeTask(void *pvParameters)
-// {
-//   (void)pvParameters;
-
-//   while (true)
-//   {
-// i
-//     vTaskDelay(1000 / portTICK_PERIOD_MS);
-//   }
-// }

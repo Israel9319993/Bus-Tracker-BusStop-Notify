@@ -2,10 +2,6 @@
 #include "function.h"
 #include "header.h"
 
- 
-
-// The serial connection to the GPS device
-// SoftwareSerial ss(RXPin, TXPin);
 void displayInfo();
 
 void setup()
@@ -37,6 +33,7 @@ WifiBegin();
       1,
       &ReadingTaskHandler,
       1);
+
   xTaskCreatePinnedToCore(
       WifiTask,
       "Wifi",
@@ -46,24 +43,12 @@ WifiBegin();
       &WifiTaskHandler,
       0);
 
-      
-//  myDFPlayer.volume(20);
-//   myDFPlayer.playLargeFolder(2,3); 
-//   xTaskCreatePinnedToCore(
-//       HomeTask,
-//       "Home",
-//       4060 ,
-//       NULL,
-//       1,
-//       NULL,
-//       1);
+
 }
 
 
 void loop()
 {
-  // This sketch displays information every time a new sentence is correctly encoded.
-  // myDFPlayer.playLargeFolder(2,3);
-  // delay(3000);
+
 }
 
