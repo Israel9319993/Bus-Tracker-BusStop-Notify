@@ -1,94 +1,61 @@
 var read_key = "HI8JWVJUXATQY0P4";
 var device_id = "2580764";
 var latitude, longitude;
-var busMarker, userMarker, polyline;
+var userMarker, busMarker;
+var userPath = [];
+var initialZoomLevel = 14;
+var userLat, userLon;
 
 $(document).ready(function () {
     initMap();
     GetData();
+    setInterval(GetData, 5000); // Fetch data every 10 seconds
 });
 
 function initMap() {
     // Initialize the map
-    window.map = L.map('map').setView([0, 0], 2); // Default view
+    window.map = L.map('map').setView([0, 0], initialZoomLevel); // Default view
 
     // Add a tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: ''
     }).addTo(window.map);
-
-    // Add zoom control
-    L.control.zoom({
-        position: 'topright'
-    }).addTo(window.map);
-
-    // Add custom locate control
-    var locateControl = L.Control.extend({
-        options: {
-            position: 'bottomright'
-        },
-        onAdd: function () {
-            var container = L.DomUtil.create('div', 'leaflet-control-locate');
-            container.innerHTML = 'Get Location';
-            container.onclick = function () {
-                getUserLocation();
-            };
-            return container;
-        }
-    });
-
-    window.map.addControl(new locateControl());
 }
 
-function updateMap(lat, lon, label, isUser) {
-    var currentZoom = window.map.getZoom();
-    var distance = "";
-
-    if (isUser) {
-        if (userMarker) {
-            window.map.removeLayer(userMarker);
-        }
-
-        if (latitude && longitude) {
-            distance = "<br>Distance from Bus: " + getDistance(lat, lon, latitude, longitude).toFixed(2) + " meters";
-        }
-
-        userMarker = L.marker([lat, lon]).addTo(window.map)
-            .bindPopup(label + '<br>Latitude: ' + lat + '<br>Longitude: ' + lon + distance)
-            .openPopup();
-    } else {
-        if (busMarker) {
-            window.map.removeLayer(busMarker);
-        }
-        var customIcon = L.icon({
-            iconUrl: 'img/icon.png', // Replace with your custom icon URL
-            iconSize: [32, 32], // Size of the icon
-            iconAnchor: [16, 32], // Point of the icon which will correspond to marker's location
-            popupAnchor: [0, -32] // Point from which the popup should open relative to the iconAnchor
-        });
-        busMarker = L.marker([lat, lon], {icon: customIcon}).addTo(window.map)
-            .bindPopup(label + '<br>Latitude: ' + lat + '<br>Longitude: ' + lon)
-            .openPopup();
+function updateMap(lat, lon, label, marker, icon = null) {
+    // Add a marker to the map
+    if (marker) {
+        window.map.removeLayer(marker);
     }
 
-    if (latitude && longitude) {
-        // Draw a line between the bus and user location
-        if (polyline) {
-            window.map.removeLayer(polyline);
-        }
-        polyline = L.polyline([[latitude, longitude], [lat, lon]], {color: 'blue'}).addTo(window.map);
-    }
+    var markerOptions = icon ? { icon: icon } : {};
+    marker = L.marker([lat, lon], markerOptions).addTo(window.map)
+        .bindPopup(label + '<br>Latitude: ' + lat + '<br>Longitude: ' + lon)
+        .openPopup();
 
-    // Reset the map view with the same zoom level
-    window.map.setView([lat, lon], currentZoom);
+    // Center the map on the new marker
+    window.map.setView([lat, lon], window.map.getZoom());
+
+    return marker;
 }
 
 function getUserLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var userLat = position.coords.latitude;
-            var userLon = position.coords.longitude;
-            updateMap(userLat, userLon, 'Your Location', true);
+        navigator.geolocation.watchPosition(function (position) {
+            userLat = position.coords.latitude;
+            userLon = position.coords.longitude;
+            userMarker = updateMap(userLat, userLon, 'Your Location', userMarker);
+            userPath.push([userLat, userLon]);
+
+            if (userPath.length > 1) {
+                L.polyline([userPath[userPath.length - 2], userPath[userPath.length - 1]], { color: 'blue' }).addTo(window.map);
+            }
+
+            if (busMarker) {
+                L.polyline([[userLat, userLon], [latitude, longitude]], { color: 'red' }).addTo(window.map);
+            }
+
+            console.log(distance(latitude, longitude, userLat, userLon));
         }, function (error) {
             console.error('Error getting user location:', error);
         });
@@ -111,8 +78,20 @@ function GetData() {
                     longitude = parseFloat(item[ubound - 1].field2);
                     console.log(latitude, longitude);
 
+                    var busIcon = L.icon({
+                        iconUrl: 'img/icon.png', // Replace with the URL of your custom bus icon
+                        iconSize: [32, 32], // size of the icon
+                        iconAnchor: [16, 32], // point of the icon which will correspond to marker's location
+                        popupAnchor: [0, -32] // point from which the popup should open relative to the iconAnchor
+                    });
+
                     // Update map with new coordinates
-                    updateMap(latitude, longitude, "Bus Location", false);
+                    busMarker = updateMap(latitude, longitude, "Bus Location", busMarker, busIcon);
+
+                    // Draw polyline between bus and user if user location is known
+                    if (userLat !== undefined && userLon !== undefined) {
+                        L.polyline([[userLat, userLon], [latitude, longitude]], { color: 'red' }).addTo(window.map);
+                    }
                 }
             });
         },
@@ -120,22 +99,14 @@ function GetData() {
             console.error('Error fetching data:', errorThrown);
         }
     });
-
-    setTimeout(GetData, 10000); // Fetch data every 10 seconds
 }
 
-function getDistance(lat1, lon1, lat2, lon2) {
-    // Haversine formula to calculate the distance between two points in meters
-    var R = 6371000; // Radius of the Earth in meters
-    var dLat = toRad(lat2 - lat1);
-    var dLon = toRad(lon2 - lon1);
-    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
-}
+function distance(lat1, lon1, lat2, lon2) {
+    var p = 0.017453292519943295; // Math.PI / 180
+    var c = Math.cos;
+    var a = 0.5 - c((lat2 - lat1) * p) / 2 + 
+            c(lat1 * p) * c(lat2 * p) * 
+            (1 - c((lon2 - lon1) * p)) / 2;
 
-function toRad(Value) {
-    return Value * Math.PI / 180;
+    return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
 }

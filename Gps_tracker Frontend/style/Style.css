@@ -2,21 +2,15 @@
     height: 100vh;
     width: 100vw;
 }
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-}
-.leaflet-control-zoom {
+.get-location-button {
     position: absolute;
-    top: 10px;
-    left: 10px;
-}
-.leaflet-control-locate {
+    bottom: 10px;
+    right: 10px;
+    z-index: 1000;
+    padding: 10px 20px;
     background-color: white;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     cursor: pointer;
 }
