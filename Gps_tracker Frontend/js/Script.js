@@ -5,11 +5,10 @@ var userMarker, busMarker;
 var userPath = [];
 var initialZoomLevel = 14;
 var userLat, userLon;
-
 $(document).ready(function () {
     initMap();
     GetData();
-    setInterval(GetData, 5000); // Fetch data every 10 seconds
+    setInterval(GetData, 1000); // Fetch data every 10 seconds
 });
 
 function initMap() {
@@ -33,7 +32,7 @@ function updateMap(lat, lon, label, marker, icon = null) {
         .bindPopup(label + '<br>Latitude: ' + lat + '<br>Longitude: ' + lon)
         .openPopup();
 
-    // Center the map on the new marker
+    // Center the map on the new marker git staus
     window.map.setView([lat, lon], window.map.getZoom());
 
     return marker;
