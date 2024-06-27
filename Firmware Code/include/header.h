@@ -24,15 +24,15 @@ TinyGPSPlus gps;
 
 
 //******************* MQTT HEADER ***************************
-String publishTopic =  "channels/2580764/publish" ;    //"yaba/location" ; // REPLACE THE NUMBER 114938 WITH YOUR channel ID
+String publishTopic = "yaba/location";  //"channels/2580764/publish" ;    //"yaba/location" ; // REPLACE THE NUMBER 114938 WITH YOUR channel ID
 
 
 const unsigned long postingInterval = 5L * 1000L; // Post data every 20 seconds.
 
-const char *mqtt_server =   "mqtt3.thingspeak.com";     //"41.223.145.80";
-const char *MQTT_USERNAME = "GRgjITklDCklDwoFDREoCS0";
-const char *MQTT_PASSWORD =   "h3YrlZ2sdEfOzeoN/T/aLDFv" ;  // "12345678";
-const char *MQTT_CLIENT_ID = "GRgjITklDCklDwoFDREoCS0";
+const char *mqtt_server = "41.223.145.80";  //"mqtt3.thingspeak.com";     //"41.223.145.80";
+const char *MQTT_USERNAME = "admin";   //GRgjITklDCklDwoFDREoCS0";
+const char *MQTT_PASSWORD =   "admin";    //h3YrlZ2sdEfOzeoN/T/aLDFv" ;  // "12345678";
+const char *MQTT_CLIENT_ID =    "1223487" ; //GRgjITklDCklDwoFDREoCS0";
 
 // *****************************************************************
 

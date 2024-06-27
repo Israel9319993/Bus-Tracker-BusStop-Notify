@@ -4,13 +4,13 @@ void pushMessage()
 {
     StaticJsonDocument<512> doc;
     
-//       JsonArray data = doc["location"].to<JsonArray>();
-//   data.add(latitude);
-//   data.add(longitude);
-//     doc["speed"] = speed;
-    // doc["link"] = "http://maps.google.com/?q=" + serialized(String(latitude,10)) + "," + serialized(String(longitude,10));
-  String output = "field1=" + serialized(String(latitude,10)) + "&field2=" + serialized(String(longitude,10)) + "&field3=" + String(speed) + "&status=MQTTPUBLISH";  
-    // output;
+      JsonArray data = doc["location"].to<JsonArray>();
+  data.add(latitude);
+  data.add(longitude);
+    doc["speed"] = speed;
+    doc["link"] = "http://maps.google.com/?q=" + serialized(String(latitude,10)) + "," + serialized(String(longitude,10));
+//   String output = "field1=" + serialized(String(latitude,10)) + "&field2=" + serialized(String(longitude,10)) + "&field3=" + String(speed) + "&status=MQTTPUBLISH";  
+    String output;
     serializeJsonPretty(doc, output);
 
     publishMessage((publishTopic), output, true);

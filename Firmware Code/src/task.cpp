@@ -25,7 +25,7 @@ void WifiTask(void *pvParameters)
 {
   (void)pvParameters;
   double lastUploadedTime = 0;
-  const int postingInterval = 15000;
+  const int postingInterval = 1000;
   while (true)
   {
 
