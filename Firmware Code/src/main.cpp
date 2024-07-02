@@ -8,7 +8,7 @@ void setup()
 {
   Serial.begin(9600);
   Serial2.begin(9600);
-   mySerial.begin(9600, SERIAL_8N1, 13, 14);
+   mySerial.begin(9600, SERIAL_8N1, 5, 18);
 WifiBegin();
   Serial.println(F("DeviceExample.ino"));
   Serial.println(F("A simple demonstration of TinyGPSPlus with an attached GPS module"));
@@ -43,12 +43,14 @@ WifiBegin();
       &WifiTaskHandler,
       0);
 
-
+myDFPlayer.volume(30);
+myDFPlayer.playLargeFolder(3,1); 
 }
 
 
 void loop()
 {
+  if()
 
 }
 

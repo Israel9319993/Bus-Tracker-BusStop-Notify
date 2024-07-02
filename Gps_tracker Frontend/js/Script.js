@@ -55,13 +55,13 @@ function getUserLocation() {
             userMarker = updateMap(userLat, userLon, 'Your Location', userMarker);
             userPath.push([userLat, userLon]);
 
-            if (userPath.length > 1) {
-                L.polyline([userPath[userPath.length - 2], userPath[userPath.length - 1]], { color: 'blue' }).addTo(window.map);
-            }
+            // if (userPath.length > 1) {
+            //     L.polyline([userPath[userPath.length - 2], userPath[userPath.length - 1]], { color: 'blue' }).addTo(window.map);
+            // }
 
-            if (busMarker) {
-                L.polyline([[userLat, userLon], [latitude, longitude]], { color: 'red' }).addTo(window.map);
-            }
+            // if (busMarker) {
+            //     L.polyline([[userLat, userLon], [latitude, longitude]], { color: 'red' }).addTo(window.map);
+            // }
 
             console.log(distance(latitude, longitude, userLat, userLon));
         }, function (error) {
@@ -73,9 +73,7 @@ function getUserLocation() {
 }
 
 function initializeWebSocket() {
-    if (ws) {
-        ws.close();
-    }
+
     ws = new WebSocket('wss://mqtt-tracking-system-4895ee17dd0b.herokuapp.com/gps');
 
     ws.onopen = function() {

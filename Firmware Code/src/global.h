@@ -30,6 +30,11 @@ extern const char *MQTT_PASSWORD;
 
 extern const char *mqtt_server;
 // **********************************************************************
+extern const int unilag;
+extern const int sabo;
+extern const int alagomeji;
+extern const int adekunle;
+extern const int esate;
 
 extern double latitude,longitude,speed;
 

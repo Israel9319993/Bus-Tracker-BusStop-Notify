@@ -36,6 +36,11 @@ const char *MQTT_CLIENT_ID =    "1223487" ; //GRgjITklDCklDwoFDREoCS0";
 
 // *****************************************************************
 
+const int unilag  = 1;
+const int sabo  = 2;
+const int alagomeji  = 3;
+const int adekunle  = 4;
+const int esate  = 5;
 double latitude,longitude,speed;
  TaskHandle_t WifiTaskHandler;
  TaskHandle_t ReadingTaskHandler;
