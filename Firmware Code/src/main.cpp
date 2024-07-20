@@ -2,13 +2,15 @@
 #include "function.h"
 #include "header.h"
 
-void displayInfo();
+
 
 void setup()
 {
   Serial.begin(9600);
   Serial2.begin(9600);
    mySerial.begin(9600, SERIAL_8N1, 5, 18);
+   pinMode(gpsLed,OUTPUT);
+  
 WifiBegin();
   Serial.println(F("DeviceExample.ino"));
   Serial.println(F("A simple demonstration of TinyGPSPlus with an attached GPS module"));
@@ -28,7 +30,7 @@ WifiBegin();
   xTaskCreatePinnedToCore(
       ReadTask,
       "Reading",
-      3040,
+      4060,
       NULL,
       1,
       &ReadingTaskHandler,
@@ -44,13 +46,44 @@ WifiBegin();
       0);
 
 myDFPlayer.volume(30);
-myDFPlayer.playLargeFolder(3,1); 
 }
+
 
 
 void loop()
 {
-  if()
-
+if(longitude > 0 && latitude > 0 &&  gpsLocateFlag == false){
+  myDFPlayer.playLargeFolder(4,GpsLocate); 
+  delay(5000);
+  gpsLocateFlag = true;
 }
 
+
+
+   Serial.println("main cordinate:   "  + trimCord(latitude,10)  + "," + trimCord(longitude,10));
+
+
+if(longitude > 0 && latitude > 0){
+checkBusStops(latitude,longitude);
+}
+ if (currentStop != previousStop) {
+      voiceFlag = true;
+      speak = currentStop; // Set speak to the current stop
+      previousStop = currentStop; // Update the previous stop
+    }
+
+if(voiceFlag == true){
+
+ myDFPlayer.playLargeFolder(4,speak);
+delay(200);
+voiceFlag = false; 
+delay(1000);
+  }
+
+    // String address = getReverseGeocoding(latitude, longitude); 
+      // Serial.println("Address: " + address);
+delay(100);
+}
+
+
+   

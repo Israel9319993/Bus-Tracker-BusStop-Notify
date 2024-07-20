@@ -15,7 +15,8 @@ void ReadTask(void *declearation)
     Serial.println(F("No GPS detected: check wiring."));
     while(true);
   }
-    vTaskDelay(1000 / portTICK_PERIOD_MS);
+  delay(10);
+    vTaskDelay(100 / portTICK_PERIOD_MS);
   }
 }
 
