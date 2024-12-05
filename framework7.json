@@ -1,0 +1,18 @@
+{
+  "cwd": "C:\\Users\\israel.obanijesu\\OneDrive - Interswitch Limited\\Desktop\\file\\doccc\\MyPersonal\\BusTracker",
+  "type": [
+    "pwa"
+  ],
+  "name": "Tracker",
+  "framework": "react",
+  "template": "tabs",
+  "bundler": "vite",
+  "cssPreProcessor": false,
+  "theming": {
+    "customColor": true,
+    "color": "#007aff",
+    "darkMode": false,
+    "iconFonts": true
+  },
+  "customBuild": false
+}

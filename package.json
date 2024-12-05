@@ -1,0 +1,52 @@
+{
+  "name": "tracker",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Tracker",
+  "repository": "",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "cross-env NODE_ENV=development vite",
+    "build": "cross-env NODE_ENV=production vite build && npx workbox generateSW workbox-config.js",
+    "postinstall": "cpy --flat ./node_modules/framework7-icons/fonts/*.* ./src/fonts/ && cpy --flat ./node_modules/material-icons/iconfont/*.* ./src/fonts/"
+  },
+  "browserslist": [
+    "IOS >= 15",
+    "Safari >= 15",
+    "last 5 Chrome versions",
+    "last 5 Firefox versions"
+  ],
+  "dependencies": {
+    "@capacitor-community/native-audio": "^6.0.0",
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/core": "^6.1.2",
+    "@capacitor/ios": "^6.1.2",
+    "@capacitor/push-notifications": "^6.0.2",
+    "axios": "^1.7.5",
+    "dom7": "^4.0.6",
+    "framework7": "^8.3.3",
+    "framework7-icons": "^5.0.5",
+    "framework7-react": "^8.3.3",
+    "leaflet": "^1.9.4",
+    "leaflet-routing-machine": "^3.2.12",
+    "lrm-graphhopper": "^1.3.0",
+    "material-icons": "^1.13.12",
+    "prop-types": "^15.8.1",
+    "react": "^19.0.0-rc-7771d3a7-20240827",
+    "react-dom": "^19.0.0-rc-7771d3a7-20240827",
+    "react-leaflet": "^5.0.0-rc.1",
+    "skeleton-elements": "^4.0.1",
+    "swiper": "^11.1.9"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.2",
+    "@types/leaflet": "^1.9.12",
+    "@vitejs/plugin-react": "^4.3.1",
+    "cpy-cli": "^5.0.0",
+    "cross-env": "^7.0.3",
+    "postcss-preset-env": "^10.0.2",
+    "vite": "^5.4.2",
+    "workbox-cli": "^7.1.0"
+  }
+}

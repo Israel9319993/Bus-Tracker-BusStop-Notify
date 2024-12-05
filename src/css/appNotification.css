@@ -1,0 +1,54 @@
+/* General styling for the notification */
+.custom-notification {
+    background-color: #ffffff; /* White background */
+    padding: 15px 20px; /* Padding for spacing */
+    border-radius: 10px; /* Rounded corners for a modern look */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    width: auto; /* Adjust width automatically */
+    max-width: 100%; /* Ensure it doesn't exceed the container's width */
+    font-family: Arial, sans-serif; /* Clean, modern font */
+   
+  }
+  
+  /* Icon styling */
+  .custom-notification .icon {
+    margin-right: 10px; /* Space between icon and text */
+  }
+  
+  /* Title styling */
+  .custom-notification .notification-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333; /* Darker color for title */
+    margin-bottom: 5px; /* Space below the title */
+  }
+  
+  /* Right-aligned text */
+  .custom-notification .notification-right-text {
+    float: right;
+    color: #999999; /* Lighter grey for the timestamp */
+    font-size: 12px; /* Smaller font size */
+  }
+  
+  /* Subtitle styling */
+  .custom-notification .notification-subtitle {
+    font-size: 14px;
+    color: #666666; /* Grey color for subtitle */
+    margin-bottom: 5px; /* Space below the subtitle */
+  }
+  
+  /* Main text styling */
+  .custom-notification .notification-text {
+    display: block;
+    width: 100%; /* Ensure full width */
+    color: #444444; /* Darker color for main text */
+    line-height: 1.5; /* Add some line height for better readability */
+    margin-top: 5px;
+  }
+  
+  /* Icon customization */
+  .custom-notification .icon.f7-icons {
+    font-size: 24px; /* Larger icon size */
+    color: #ff9800; /* Orange color for the icon */
+  }
+  

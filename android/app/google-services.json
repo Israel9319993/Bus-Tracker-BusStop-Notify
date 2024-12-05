@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1016915427226",
+    "project_id": "bus-tracker-push-notification",
+    "storage_bucket": "bus-tracker-push-notification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016915427226:android:1ffa4591789497020ec423",
+        "android_client_info": {
+          "package_name": "com.interswitch.tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrzNedQnNt9TarJ1Z_9z9skDrp8FHj3fo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

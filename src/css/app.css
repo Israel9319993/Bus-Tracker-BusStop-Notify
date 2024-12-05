@@ -1,0 +1,126 @@
+/* Your app custom styles here */
+
+#mapBlock{
+height:100Vh;
+width: 100%;
+}
+
+#navBar{
+    background-color: rgb(228, 19, 19);
+}
+
+#bottomTab{
+    /* background-color: rgb(255, 255, 255); */
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 5%;
+    border-radius: 50px;
+    position: absolute;
+    bottom: 2%;
+    background-color: rgb(4, 11, 52);
+   
+}
+
+.bottomTabs{
+    border-radius: 50px;
+    /* color: blue; */
+}
+
+#bottomTab .bottomTabs {
+    color: rgba(129, 125, 125, 0.717); /* Default color for inactive tabs */
+  }
+  
+  /* Active tab link */
+  #bottomTab .bottomTabs.tab-link-active {
+    color: rgb(229, 231, 234); /* Color for active tabs */
+    font-weight: bold;
+    scale: 1.1;
+  }
+  
+  /* Optionally, change the icon color */
+  #bottomTab .bottomTabs .icon {
+    color: inherit; /* Makes sure the icon color inherits the text color */
+   font-size: 30px;
+  }
+
+  #bottomTab .bottomTabs.tab-link-active ::before{
+background-color:transparent;
+ 
+  }
+   
+
+  #topBlock{
+ width:96%;
+ /* width:100%; */
+ border-radius: 35px;
+ height: fit-content;
+ background-color: rgb(4, 11, 52);
+ position: fixed;
+ top: 4%;
+ left: 2%;
+/* padding: 2%; */
+color:  rgb(229, 231, 234); 
+ z-index: 1000;
+ /* display: flex; */
+ align-items: center;
+
+ justify-content:center;
+ overflow: hidden;
+  }
+
+  .smallBlock{
+    /* background-color: brown; */
+    /* height: 80px; */
+    /* width:; */
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+
+
+      }
+
+.floatButton{
+    position:fixed;
+    bottom:18%;
+    box-shadow: -2px 4px 10px 0.1px rgba(0, 0, 0, 0.653);
+   /* border: 1.5px solid rgb(68, 138, 235); */
+   /* height:7.2%;
+   width: 30%; */
+   border-radius: 15px;
+   z-index: 1000;
+   padding:6%;
+  
+}
+
+.deleteButton{
+  position:relative;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  box-shadow: -2px 4px 10px 0.1px rgba(0, 0, 0, 0.653);
+
+ width:fit-content; 
+ border-radius: 15px;
+ z-index: 1000;
+ padding:6%;
+
+}
+
+#topBorder{
+ height:  25%;
+ width: 90%;
+ border: 2px solid rgb(8, 130, 243);
+ margin-top: 5%;
+ margin-left: 5%;
+ margin-right: 5%;
+ border-radius: 20px;
+ display: flex;
+ flex-direction: column;
+ 
+ /* padding:1%; */
+ justify-self: center;
+ overflow: hidden;
+}
+
+
+

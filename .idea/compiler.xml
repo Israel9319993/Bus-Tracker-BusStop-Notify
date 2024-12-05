@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="android.app" target="22" />
+      <module name="android.capacitor-android" target="22" />
+      <module name="android.capacitor-cordova-android-plugins" target="22" />
+      <module name="capacitor" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
